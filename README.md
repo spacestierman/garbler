@@ -31,3 +31,7 @@ Returns the number of garbled characters per iteration.
 Returns the current target of the Garbler.
 ##buildCharactersArray: function(startCode, endCode)
 A helper function that can be used with setGarbledCharacters. Fills an array with the characters represented by the startCode through the endCode (inclusive).
+##buildNormalCharactersArray()
+A helper function that can be used with setGarbledCharacters. Fills an array with the character codes from 32 to 126. See [ASCII lookup table](http://www.asciitable.com/).
+##buildCthuluCharactersArray()
+A helper function that can be used with setGarbledCharacters. Fills an array with Cthulu-y Unicode characters.

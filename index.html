@@ -17,7 +17,7 @@
 	<body>
 		<h1>Garbler</h1>
 		<p>Garbles the text in the DOM by switching out characters with other random characters.</p>
-		
+
 		<h2>Basic Usage</h2>
 		<pre>
 			&lt;script src=&quot;garbler.js&quot;&gt;&lt;/script&gt;
@@ -33,6 +33,7 @@
 		<button id="reset-button">Reset</button>
 		<p><label>Interval In Milliseconds: <input id="interval-in-milliseconds" value="" /></label></p>
 		<p><label>Garbles per Interval: <input id="garbles-per-interval" value="" /></label></p>
+		<p><label>Cthulu Mode? <input type="checkbox" id="cthulu-radio" value="1" /></label></p>
 		<hr />
 		<h2>API</h2>
 		<h3>garble(intervalInMilliseconds, garblesPerInterval)</h3>
@@ -67,6 +68,7 @@
 			$("#start-button").click(_garbler.start.bind(_garbler));
 			$("#stop-button").click(_garbler.stop.bind(_garbler));
 			$("#reset-button").click(_garbler.reset.bind(_garbler));
+			$("#cthulu-radio").click(onCthuluRadioSelected);
 
 			var _$intervalInput = $("#interval-in-milliseconds");
 			_$intervalInput.val(_garbler.getIntervalInMilliseconds());
@@ -97,6 +99,12 @@
 					parseInt(_$intervalInput.val()),
 					parseInt(_$garblesPerInput.val())
 				);
+			}
+
+			function onCthuluRadioSelected(evt) {
+				var isChecked = $("#cthulu-radio").is(":checked");
+				var characters = isChecked ? _garbler.buildCthuluCharactersArray() : _garbler.buildNormalCharactersArray();
+				_garbler.setGarbleCharacters(characters);
 			}
 
 			function onBodyClicked(evt) {
